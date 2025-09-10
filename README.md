@@ -76,7 +76,7 @@ It empowers event organizers, security personnel, and administrators to monitor 
 ---
 
 ## Code Repository
-🔗 **GitHub (Public):** [Add your repository link here]
+🔗 **GitHub (Public):** [(https://github.com/Pransu-singh/Ujjain-Mahakumbh-Hackathon-TH1055)]
 
 ## Prototype Demonstration Video
-📺 **Video Link (Public):** [Add your video link here]
+📺 **Video Link (Public):** [ https://drive.google.com/drive/folders/11Ag2-6PIxbVvsppdHaq43c_lVZ9qmhd_?usp=drive_link]
