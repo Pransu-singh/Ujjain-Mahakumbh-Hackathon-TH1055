@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <circle cx="50" cy="50" r="45" stroke="#4299e1" stroke-width="2" />
+  <g transform="translate(25, 30)">
+    <!-- People icons representing crowd -->
+    <path d="M15 25c4.142 0 7.5-3.358 7.5-7.5S19.142 10 15 10s-7.5 3.358-7.5 7.5S10.858 25 15 25z" fill="#4299e1"/>
+    <path d="M35 20c3.314 0 6-2.686 6-6s-2.686-6-6-6-6 2.686-6 6 2.686 6 6 6z" fill="#4299e1"/>
+    <path d="M45 30c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5z" fill="#4299e1"/>
+  </g>
+  <!-- AI circuit pattern -->
+  <path d="M20 50h60" stroke="#4299e1" stroke-width="1" stroke-dasharray="2 2"/>
+  <path d="M50 20v60" stroke="#4299e1" stroke-width="1" stroke-dasharray="2 2"/>
+  <circle cx="50" cy="50" r="3" fill="#4299e1"/>
+  <circle cx="30" cy="50" r="2" fill="#4299e1"/>
+  <circle cx="70" cy="50" r="2" fill="#4299e1"/>
+  <circle cx="50" cy="30" r="2" fill="#4299e1"/>
+  <circle cx="50" cy="70" r="2" fill="#4299e1"/>
+</svg>
