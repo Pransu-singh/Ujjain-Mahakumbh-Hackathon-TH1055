@@ -1,9 +1,14 @@
--- Create enum for user types
-CREATE TYPE user_type AS ENUM ('pilgrim', 'security', 'admin');
+-- Create enum for user types (safe for repeated runs)
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'user_type') THEN
+    CREATE TYPE user_type AS ENUM ('pilgrim', 'security', 'admin');
+  END IF;
+END$$;
 
 -- Create users table
-CREATE TABLE users (
-  id UUID REFERENCES auth.users(id) PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS users (
+  id UUID PRIMARY KEY REFERENCES auth.users(id),
   username TEXT UNIQUE NOT NULL,
   email TEXT UNIQUE NOT NULL,
   user_type user_type NOT NULL,
@@ -18,8 +23,9 @@ BEGIN
     NEW.updated_at = TIMEZONE('utc'::text, NOW());
     RETURN NEW;
 END;
-$$ language 'plpgsql';
+$$ LANGUAGE plpgsql;
 
+DROP TRIGGER IF EXISTS update_users_updated_at ON users;
 CREATE TRIGGER update_users_updated_at
     BEFORE UPDATE ON users
     FOR EACH ROW
@@ -28,16 +34,25 @@ CREATE TRIGGER update_users_updated_at
 -- Set up Row Level Security (RLS)
 ALTER TABLE users ENABLE ROW LEVEL SECURITY;
 
--- Create policies
+-- Policy: Users can view their own profile
 CREATE POLICY "Users can view their own profile"
   ON users FOR SELECT
   USING (auth.uid() = id);
 
+-- Policy: Admin can view all profiles
 CREATE POLICY "Admin can view all profiles"
   ON users FOR SELECT
-  USING ((
-    SELECT user_type FROM users WHERE id = auth.uid()
-  ) = 'admin');
+  USING (
+    EXISTS (
+      SELECT 1 FROM users u WHERE u.id = auth.uid() AND u.user_type = 'admin'
+    )
+  );
+
+-- Policy: Users can update their own profile
+CREATE POLICY "Users can update their own profile"
+  ON users FOR UPDATE
+  USING (auth.uid() = id)
+  WITH CHECK (auth.uid() = id);
 
 -- Function to handle new user signup
 CREATE OR REPLACE FUNCTION public.handle_new_user()
@@ -57,18 +72,7 @@ BEGIN
 END;
 $$;
 
--- Trigger to automatically create user profile on signup
+DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
 CREATE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
-
--- Allow all users to insert their own profile
-CREATE POLICY "Users can insert their own profile"
-  ON users FOR INSERT
-  WITH CHECK (auth.uid() = id);
-
--- Allow users to update their own profile
-CREATE POLICY "Users can update their own profile"
-  ON users FOR UPDATE
-  USING (auth.uid() = id)
-  WITH CHECK (auth.uid() = id);

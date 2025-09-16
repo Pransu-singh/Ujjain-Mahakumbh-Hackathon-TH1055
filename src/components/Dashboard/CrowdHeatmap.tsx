@@ -13,11 +13,9 @@ const CrowdHeatmap: React.FC = () => {
   const [heatmapData, setHeatmapData] = useState<HeatmapData[]>([]);
 
   useEffect(() => {
-    // Simulated data - in real application, this would come from your backend
     const generateHeatmapData = () => {
       const areas = ['Gate A', 'Gate B', 'Gate C', 'Section 1', 'Section 2', 'Section 3'];
       const times = ['8:00', '9:00', '10:00', '11:00', '12:00'];
-      
       return areas.map(area => ({
         id: area,
         data: times.map(time => ({
@@ -32,7 +30,7 @@ const CrowdHeatmap: React.FC = () => {
     };
 
     updateData();
-    const interval = setInterval(updateData, 5000); // Update every 5 seconds
+    const interval = setInterval(updateData, 5000);
 
     return () => clearInterval(interval);
   }, []);

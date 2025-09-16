@@ -40,10 +40,10 @@ const Settings: React.FC = () => {
             type="number"
             value={alertThreshold}
             onChange={e => setAlertThreshold(Number(e.target.value))}
-            className="border p-2 rounded w-20 ml-2"
+            className="border p-2 rounded w-20 ml-2 dark:bg-gray-700 dark:text-gray-100"
             min={50}
             max={100}
-          />
+            />
         </div>
         <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
           <label className="font-semibold dark:text-gray-100 mb-2 block">Theme</label>

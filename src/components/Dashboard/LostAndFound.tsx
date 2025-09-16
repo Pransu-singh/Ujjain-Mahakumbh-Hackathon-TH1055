@@ -53,15 +53,15 @@ const LostAndFound: React.FC = () => {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-2xl font-bold mb-4">Register Lost Item</h2>
-        <form onSubmit={handleRegister} className="space-y-4 bg-white p-4 rounded shadow">
+        <h2 className="text-2xl font-bold mb-4 dark:text-gray-100">Register Lost Item</h2>
+        <form onSubmit={handleRegister} className="space-y-4 bg-white dark:bg-gray-800 p-4 rounded shadow">
           <input
             type="text"
             name="name"
             placeholder="Item Name"
             value={form.name}
             onChange={handleChange}
-            className="w-full border p-2 rounded"
+            className="w-full border p-2 rounded dark:bg-gray-700 dark:text-gray-100"
             required
           />
           <textarea
@@ -69,7 +69,7 @@ const LostAndFound: React.FC = () => {
             placeholder="Description"
             value={form.description}
             onChange={handleChange}
-            className="w-full border p-2 rounded"
+            className="w-full border p-2 rounded dark:bg-gray-700 dark:text-gray-100"
             required
           />
           <input
@@ -78,7 +78,7 @@ const LostAndFound: React.FC = () => {
             placeholder="Image URL (optional)"
             value={form.image}
             onChange={handleChange}
-            className="w-full border p-2 rounded"
+            className="w-full border p-2 rounded dark:bg-gray-700 dark:text-gray-100"
           />
           <button
             type="submit"
@@ -90,16 +90,16 @@ const LostAndFound: React.FC = () => {
       </div>
 
       <div>
-        <h2 className="text-2xl font-bold mb-4">Your Lost Items</h2>
+        <h2 className="text-2xl font-bold mb-4 dark:text-gray-100">Your Lost Items</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {lostItems.length === 0 && <p>No lost items registered yet.</p>}
+          {lostItems.length === 0 && <p className="dark:text-gray-100">No lost items registered yet.</p>}
           {lostItems.map(item => (
-            <div key={item.id} className="bg-yellow-50 p-4 rounded shadow flex items-center space-x-4">
+            <div key={item.id} className="bg-yellow-50 dark:bg-yellow-900 p-4 rounded shadow flex items-center space-x-4">
               {item.image && <img src={item.image} alt={item.name} className="h-16 w-16 rounded object-cover" />}
               <div>
-                <h3 className="font-bold">{item.name}</h3>
-                <p className="text-sm">{item.description}</p>
-                <span className="text-xs text-yellow-700">Status: {item.status}</span>
+                <h3 className="font-bold dark:text-gray-100">{item.name}</h3>
+                <p className="text-sm dark:text-gray-100">{item.description}</p>
+                <span className="text-xs text-yellow-700 dark:text-yellow-200">Status: {item.status}</span>
               </div>
             </div>
           ))}
@@ -107,15 +107,15 @@ const LostAndFound: React.FC = () => {
       </div>
 
       <div>
-        <h2 className="text-2xl font-bold mb-4">Found Items</h2>
+        <h2 className="text-2xl font-bold mb-4 dark:text-gray-100">Found Items</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {foundItems.map(item => (
-            <div key={item.id} className="bg-green-50 p-4 rounded shadow flex items-center space-x-4">
+            <div key={item.id} className="bg-green-50 dark:bg-green-900 p-4 rounded shadow flex items-center space-x-4">
               {item.image && <img src={item.image} alt={item.name} className="h-16 w-16 rounded object-cover" />}
               <div>
-                <h3 className="font-bold">{item.name}</h3>
-                <p className="text-sm">{item.description}</p>
-                <span className="text-xs text-green-700">Status: {item.status}</span>
+                <h3 className="font-bold dark:text-gray-100">{item.name}</h3>
+                <p className="text-sm dark:text-gray-100">{item.description}</p>
+                <span className="text-xs text-green-700 dark:text-green-200">Status: {item.status}</span>
               </div>
             </div>
           ))}

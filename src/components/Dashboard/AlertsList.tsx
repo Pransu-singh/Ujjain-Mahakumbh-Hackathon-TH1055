@@ -60,13 +60,13 @@ const AlertsList: React.FC = () => {
   const getAlertStyle = (type: string) => {
     switch (type) {
       case 'danger':
-        return 'bg-red-50 border-red-400 text-red-700';
+        return 'bg-red-50 border-red-400 text-red-700 dark:bg-red-900 dark:border-red-700 dark:text-red-200';
       case 'warning':
-        return 'bg-yellow-50 border-yellow-400 text-yellow-700';
+        return 'bg-yellow-50 border-yellow-400 text-yellow-700 dark:bg-yellow-900 dark:border-yellow-700 dark:text-yellow-200';
       case 'info':
-        return 'bg-blue-50 border-blue-400 text-blue-700';
+        return 'bg-blue-50 border-blue-400 text-blue-700 dark:bg-blue-900 dark:border-blue-700 dark:text-blue-200';
       default:
-        return 'bg-gray-50 border-gray-400 text-gray-700';
+        return 'bg-gray-50 border-gray-400 text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200';
     }
   };
 
@@ -93,7 +93,7 @@ const AlertsList: React.FC = () => {
             <div className="ml-3 w-full">
               <div className="flex justify-between">
                 <p className="text-sm font-medium">{alert.message}</p>
-                <span className="text-xs text-gray-500">
+                <span className="text-xs text-gray-500 dark:text-gray-300">
                   {alert.timestamp.toLocaleTimeString()}
                 </span>
               </div>

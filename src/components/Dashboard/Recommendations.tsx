@@ -8,10 +8,10 @@ const recommendations = [
 
 const Recommendations: React.FC = () => (
   <div>
-    <h2 className="text-2xl font-bold mb-4">AI Recommendations</h2>
+    <h2 className="text-2xl font-bold mb-4 dark:text-gray-100">AI Recommendations</h2>
     <ul className="space-y-3">
       {recommendations.map(rec => (
-        <li key={rec.id} className="bg-blue-50 p-3 rounded shadow">
+        <li key={rec.id} className="bg-blue-50 dark:bg-blue-900 dark:text-blue-100 p-3 rounded shadow">
           {rec.suggestion}
         </li>
       ))}

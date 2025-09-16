@@ -45,43 +45,43 @@ const ResourceDeployment: React.FC = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'active':
-        return 'bg-green-100 text-green-800';
+        return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
       case 'en-route':
-        return 'bg-yellow-100 text-yellow-800';
+        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
       case 'standby':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200';
     }
   };
 
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-blue-50 p-4 rounded-lg">
+        <div className="bg-blue-50 dark:bg-blue-900 p-4 rounded-lg">
           <div className="flex items-center">
-            <UserIcon className="h-6 w-6 text-blue-500" />
-            <span className="ml-2 text-blue-700 font-medium">Total Personnel</span>
+            <UserIcon className="h-6 w-6 text-blue-500 dark:text-blue-200" />
+            <span className="ml-2 text-blue-700 dark:text-blue-200 font-medium">Total Personnel</span>
           </div>
-          <p className="mt-2 text-2xl font-bold text-blue-900">
+          <p className="mt-2 text-2xl font-bold text-blue-900 dark:text-blue-100">
             {resources.reduce((acc, curr) => acc + curr.personnel, 0)}
           </p>
         </div>
 
-        <div className="bg-green-50 p-4 rounded-lg">
+        <div className="bg-green-50 dark:bg-green-900 p-4 rounded-lg">
           <div className="flex items-center">
-            <ShieldCheckIcon className="h-6 w-6 text-green-500" />
-            <span className="ml-2 text-green-700 font-medium">Active Units</span>
+            <ShieldCheckIcon className="h-6 w-6 text-green-500 dark:text-green-200" />
+            <span className="ml-2 text-green-700 dark:text-green-200 font-medium">Active Units</span>
           </div>
-          <p className="mt-2 text-2xl font-bold text-green-900">
+          <p className="mt-2 text-2xl font-bold text-green-900 dark:text-green-100">
             {resources.filter(r => r.status === 'active').length}
           </p>
         </div>
       </div>
 
-      <div className="bg-white rounded-lg overflow-hidden">
+      <div className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden">
         <div className="flow-root">
-          <ul className="-my-5 divide-y divide-gray-200">
+          <ul className="-my-5 divide-y divide-gray-200 dark:divide-gray-700">
             {resources.map((resource) => (
               <motion.li
                 key={resource.id}
@@ -92,13 +92,13 @@ const ResourceDeployment: React.FC = () => {
               >
                 <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0">
-                    <ShieldCheckIcon className="h-6 w-6 text-gray-400" />
+                    <ShieldCheckIcon className="h-6 w-6 text-gray-400 dark:text-gray-300" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900 truncate">
+                    <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
                       {resource.type}
                     </p>
-                    <p className="text-sm text-gray-500 truncate">{resource.location}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-300 truncate">{resource.location}</p>
                   </div>
                   <div>
                     <span
@@ -109,7 +109,7 @@ const ResourceDeployment: React.FC = () => {
                       {resource.status}
                     </span>
                   </div>
-                  <div className="flex-shrink-0 text-sm text-gray-500">
+                  <div className="flex-shrink-0 text-sm text-gray-500 dark:text-gray-300">
                     {resource.personnel} personnel
                   </div>
                 </div>

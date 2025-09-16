@@ -33,13 +33,13 @@ const options = {
 
 const Analytics: React.FC = () => (
   <div>
-    <h2 className="text-2xl font-bold mb-4">Analytics</h2>
-    <div className="bg-white p-4 rounded shadow">
+    <h2 className="text-2xl font-bold mb-4 dark:text-gray-100">Analytics</h2>
+    <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
       <Bar data={data} options={options} />
     </div>
     <div className="mt-6">
-      <h3 className="font-semibold mb-2">Summary</h3>
-      <ul className="list-disc ml-6 text-gray-700">
+      <h3 className="font-semibold mb-2 dark:text-gray-100">Summary</h3>
+      <ul className="list-disc ml-6 text-gray-700 dark:text-gray-200">
         <li>Gate A had the highest peak today.</li>
         <li>Main Plaza is consistently crowded during noon hours.</li>
         <li>Section 2 saw a 10% increase in footfall compared to yesterday.</li>

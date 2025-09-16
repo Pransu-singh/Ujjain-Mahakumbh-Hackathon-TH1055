@@ -1,41 +1,37 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { UserType } from './types';
 import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-const ShieldLogo: React.FC = () => {
-  return (
-    <motion.div
-      initial={{ scale: 0.8, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.8 }}
-      className="w-full h-full flex items-center justify-center"
-    >
-      <motion.img
-        src="/models/security_shield.svg"
-        alt="Security Shield"
-        className="w-64 h-64 filter drop-shadow-2xl"
-        whileHover={{ scale: 1.1, rotate: 5 }}
-        whileTap={{ scale: 0.9 }}
-        animate={{
-          y: [0, -10, 0],
-        }}
-        transition={{
-          y: {
-            duration: 2,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          },
-        }}
-      />
-    </motion.div>
-  );
-};
+const ShieldLogo: React.FC = () => (
+  <motion.div
+    initial={{ scale: 0.8, opacity: 0 }}
+    animate={{ scale: 1, opacity: 1 }}
+    transition={{ duration: 0.8 }}
+    className="w-full h-full flex items-center justify-center"
+  >
+    <motion.img
+      src="/models/security_shield.svg"
+      alt="Security Shield"
+      className="w-64 h-64 filter drop-shadow-2xl"
+      whileHover={{ scale: 1.1, rotate: 5 }}
+      whileTap={{ scale: 0.9 }}
+      animate={{
+        y: [0, -10, 0],
+      }}
+      transition={{
+        y: {
+          duration: 2,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        },
+      }}
+    />
+  </motion.div>
+);
 
 const Login: React.FC = () => {
   const [isRegistering, setIsRegistering] = useState(false);
-  const [userType, setUserType] = useState<UserType>('pilgrim');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -51,7 +47,7 @@ const Login: React.FC = () => {
         }
         await register(email, password);
       } else {
-        await login(email, password, userType);
+        await login(email, password);
       }
       navigate('/');
     } catch (error) {
@@ -73,29 +69,6 @@ const Login: React.FC = () => {
             {isRegistering ? 'Create Account' : 'Welcome Back'}
           </h2>
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* User Type Selection - Only show for login */}
-            {!isRegistering && (
-              <div className="space-y-2">
-                <label className="block text-sm font-medium text-gray-700">I am a:</label>
-                <div className="flex space-x-4">
-                  {(['pilgrim', 'security', 'admin'] as UserType[]).map((type) => (
-                    <button
-                      key={type}
-                      type="button"
-                      onClick={() => setUserType(type)}
-                      className={`px-4 py-2 rounded-lg capitalize ${
-                        userType === type
-                          ? 'bg-primary text-white'
-                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                      }`}
-                    >
-                      {type}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
             {/* Email Field */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -179,6 +152,11 @@ const Login: React.FC = () => {
                   : "Don't have an account? Register"}
               </button>
             </div>
+            {isRegistering && (
+              <div className="text-xs text-gray-500 mt-2">
+                Only pilgrims can self-register. Security and admin accounts are created by an admin.
+              </div>
+            )}
           </form>
         </div>
       </div>
