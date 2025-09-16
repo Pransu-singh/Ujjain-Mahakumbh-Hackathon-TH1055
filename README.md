@@ -1,46 +1,82 @@
-# Getting Started with Create React App
+# CrowdGuard AI - Prototype
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
+CrowdGuard AI is an intelligent, real-time crowd monitoring and management platform designed for large-scale events like the Mahakumbh pilgrimage in Ujjain.
+It empowers event organizers, security personnel, and administrators to monitor crowd density, respond to emergencies, and manage resources efficiently using a modern, role-based web application.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Key Features
 
-### `npm start`
+### Role-Based Access Control
+- **Pilgrim** → Access to safety alerts, lost & found, and recommendations.
+- **Security** → Access to live feeds, crowd analytics, and incident response tools.
+- **Admin** → Full access to analytics, resource management, and system configuration.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Authentication & User Management
+- Secure **Supabase Auth** integration.
+- User roles stored in **PostgreSQL** with **Row Level Security (RLS)** for access control.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Real-Time Crowd Analytics
+- **TensorFlow.js + COCO-SSD** integration for live video stream analysis and crowd density calculation.
 
-### `npm test`
+### Automated Alerts
+- Alerts for **high crowd density**, **unusual movements**, and **emergencies**, visible to **security** and **admin** users.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Resource Deployment
+- Dashboard to **track** and **manage** security and medical teams.
 
-### `npm run build`
+### Lost & Found Module
+- Register and manage lost/found items, **accessible to all users**.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### AI Recommendations
+- Intelligent **suggestions for crowd control** and **resource allocation**.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Social Sentiment Analysis
+- Visualize **public sentiment** from social media feeds to gauge risks.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### User Preferences
+- Customizable **notifications**, **density thresholds**, and **dark/light mode**.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Architecture & Technology Stack
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Frontend
+- React 18 + TypeScript
+- Tailwind CSS + Framer Motion
+- Chart.js & Nivo for data visualizations
+- Heroicons for modern, accessible icons
+- Jest + React Testing Library
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### AI/ML
+- TensorFlow.js with **COCO-SSD** for real-time object detection
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Backend & Database
+- **Supabase (PostgreSQL)**  
+  - Authentication & user roles  
+  - Row Level Security (RLS)  
+  - Database triggers for auto-profile creation  
 
-## Learn More
+### APIs & Integrations
+- Supabase REST APIs
+- Social sentiment analysis *(simulated for prototype)*
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### DevOps & Tooling
+- VS Code, GitHub, Postman
+---
+## How It Works
+1. **User Registration** → Users sign up & select their role; profiles are auto-created via Supabase triggers.
+2. **Role-Based Access** → After login, dashboards are tailored based on the user role.
+3. **Live Monitoring** → Security/Admin users access live video feeds; AI detects people & calculates crowd density in real-time.
+4. **Incident Management** → Security teams receive alerts & manage incidents seamlessly.
+5. **Pilgrim Support** → Pilgrims view safety alerts, recommendations, and lost & found items.
+6. **Analytics & Reporting** → Admins visualize **heatmaps**, **sentiment trends**, and **real-time analytics**.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
+
+## Code Repository
+🔗 **GitHub (Public):** [(https://github.com/Pransu-singh/Ujjain-Mahakumbh-Hackathon-TH1055)]
+
+## Prototype Demonstration Video
+📺 **Video Link (Public):** [ https://drive.google.com/drive/folders/11Ag2-6PIxbVvsppdHaq43c_lVZ9qmhd_?usp=drive_link]
